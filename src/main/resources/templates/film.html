@@ -7,7 +7,6 @@
 <body>
 <div th:insert="fragments/header"></div>
 <h2>Film Catalogue</h2>
-
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <div class="col" th:each="film : ${film}">
         <div class="card-header text-center bg-light h4" th:text="${film.title}"></div>
@@ -20,5 +19,6 @@
         <div class="card-footer text-end text-white bg-success" th:text="${film.rentalRate}"></div>
     </div>
 </div>
+<div th:insert="fragments/footer :: main"></div>
 </body>
 </html>
