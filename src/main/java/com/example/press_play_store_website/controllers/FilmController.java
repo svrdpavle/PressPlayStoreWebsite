@@ -22,7 +22,7 @@ public class FilmController {
         return "film";
     }
 
-    @GetMapping("/welcome")
+    @GetMapping("/home")
     public String welcome() {
         return "index";
     }
