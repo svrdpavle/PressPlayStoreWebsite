@@ -25,7 +25,7 @@ public class RentalEntity {
     private Timestamp returnDate;
     @Basic
     @Column(name = "staff_id")
-    private Object staffId;
+    private Integer staffId;
     @Basic
     @Column(name = "last_update")
     private Timestamp lastUpdate;
@@ -70,11 +70,11 @@ public class RentalEntity {
         this.returnDate = returnDate;
     }
 
-    public Object getStaffId() {
+    public Integer getStaffId() {
         return staffId;
     }
 
-    public void setStaffId(Object staffId) {
+    public void setStaffId(Integer staffId) {
         this.staffId = staffId;
     }
 
