@@ -10,10 +10,10 @@ public class CustomerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "customer_id")
-    private Object customerId;
+    private Integer customerId;
     @Basic
     @Column(name = "store_id")
-    private Object storeId;
+    private Integer storeId;
     @Basic
     @Column(name = "first_name")
     private String firstName;
@@ -36,19 +36,19 @@ public class CustomerEntity {
     @Column(name = "last_update")
     private Timestamp lastUpdate;
 
-    public Object getCustomerId() {
+    public Integer getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Object customerId) {
+    public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
     }
 
-    public Object getStoreId() {
+    public Integer getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Object storeId) {
+    public void setStoreId(Integer storeId) {
         this.storeId = storeId;
     }
 
