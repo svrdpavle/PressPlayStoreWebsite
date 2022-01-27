@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Catalogue</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Film Catalogue</h2>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" th:each="actor : ${actor}">
+        <div class="card-header text-center bg-light h4" th:text="${actor.actorId}"></div>
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text h5">First Name:</p>
+                <p class="card-text" th:text="${actor.firstName}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>
