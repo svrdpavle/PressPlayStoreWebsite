@@ -1,6 +1,6 @@
 package com.example.press_play_store_website.repositories;
 
-import com.example.press_play_store_website.entities.AddressEntity;
+import com.example.press_play_store_website.entities.tables.AddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

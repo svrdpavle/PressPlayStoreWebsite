@@ -1,4 +1,4 @@
-package com.example.press_play_store_website.entities;
+package com.example.press_play_store_website.entities.tables;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
