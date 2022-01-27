@@ -8,12 +8,11 @@
 <div th:insert="fragments/header"></div>
 <h2>Film Catalogue</h2>
 <div class="row row-cols-1 row-cols-md-4 g-4">
-    <div class="col" th:each="actor : ${actor}">
-        <div class="card-header text-center bg-light h4" th:text="${actor.actorId}"></div>
+    <div class="col" th:each="address : ${address}">
+        <div class="card-header text-center bg-light h4" th:text="${address.addressId}"></div>
         <div class="card">
             <div class="card-body">
-                <p class="card-text h5">First Name:</p>
-                <p class="card-text" th:text="${actor.firstName}"></p>
+                <p class="card-text" th:text="${address.address}"></p>
             </div>
         </div>
     </div>
