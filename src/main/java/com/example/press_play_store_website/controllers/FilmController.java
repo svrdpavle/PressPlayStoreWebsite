@@ -22,8 +22,13 @@ public class FilmController {
         return "film";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "about";
+    }
+
     @GetMapping("/home")
-    public String welcome() {
+    public String home() {
         return "index";
     }
 }
