@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Film Catalogue</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Film Catalogue</h2>
+<div class="row row-cols-1 g-4">
+    <div class="col">
+        <div class="card" th:object="${film}">
+            <div class="card-header text-center bg-light h4" th:text="${film.title}"></div>
+            <div class="card-header text-center text-white bg-danger h4" th:text="${film.category}"></div>
+            <div class="card-body">
+                <p class="card-text h5">Description:</p>
+                <p class="card-text" th:text="${film.description}"></p>
+            </div>
+            <div class="card-footer text-end text-white bg-success" th:text="${film.price}"></div>
+        </div>
+    </div>
+</div>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>
