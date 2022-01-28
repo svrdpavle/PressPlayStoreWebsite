@@ -32,6 +32,16 @@ public class WebsiteController {
         return "view-film";
     }
 
+    @GetMapping("/access-denied")
+    public String getAccessDeniedPage() {
+        return "access-denied";
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage() {
+        return "login";
+    }
+
     @GetMapping("/about")
     public String about() {
         return "about";
