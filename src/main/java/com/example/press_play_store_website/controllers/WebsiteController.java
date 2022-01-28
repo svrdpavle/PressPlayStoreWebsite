@@ -1,21 +1,27 @@
 package com.example.press_play_store_website.controllers;
 
+import com.example.press_play_store_website.entities.tables.StaffEntity;
 import com.example.press_play_store_website.entities.views.FilmListEntity;
 import com.example.press_play_store_website.repositories.FilmListRepository;
+import com.example.press_play_store_website.repositories.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class WebsiteController {
     private final FilmListRepository filmListRepository;
+    private final StaffRepository staffRepository;
     //private final FilmService filmService = new FilmService();
 
     @Autowired
-    public WebsiteController(FilmListRepository filmListRepository) {
+    public WebsiteController(FilmListRepository filmListRepository, StaffRepository staffRepository) {
         this.filmListRepository = filmListRepository;
+        this.staffRepository = staffRepository;
     }
 
     @GetMapping("/film")
@@ -30,6 +36,41 @@ public class WebsiteController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Film ID: " + id));
         model.addAttribute("film", filmListEntity);
         return "view-film";
+    }
+
+    @GetMapping("/staff")
+    public String getAllStaff(Model model) {
+        model.addAttribute("staff", staffRepository.findAll());
+        return "staff";
+    }
+
+    @GetMapping("/add-staff")
+    public String addStaff(Model model) {
+        StaffEntity staffEntity = new StaffEntity();
+        model.addAttribute("staff", staffEntity);
+        return "add-staff";
+    }
+
+    @PostMapping("/save-staff")
+    public String saveStaff(@ModelAttribute("staff") StaffEntity staffEntity) {
+        staffRepository.save(staffEntity);
+        return "saved-staff";
+    }
+
+    @GetMapping("/edit-staff/{id}")
+    public String editStaff(@PathVariable("id") Integer id, Model model) {
+        StaffEntity staffEntity = staffRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Staff ID: " + id));
+        model.addAttribute("staff", staffEntity);
+        return "edit-staff";
+    }
+
+    @GetMapping("/delete-staff/{id}")
+    public String deleteStaff(@PathVariable("id") Integer id) {
+        StaffEntity staffEntity = staffRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Customer ID" + id));
+        staffRepository.delete(staffEntity);
+        return "staff";
     }
 
     @GetMapping("/access-denied")

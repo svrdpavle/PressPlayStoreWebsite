@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Staff</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Edit Staff</h2>
+<form th:action="@{/save-staff/}" th:object="${staff}" method="post">
+    <H2>Staff ID</H2>
+    <H2 th:text="*{staffId}"></H2>
+    <label>First Name: </label>
+    <input type="text" th:field="*{firstName}"/><br>
+    <label>Last Name: </label>
+    <input type="text" th:field="*{lastName}"/><br>
+    <label>Email Title: </label>
+    <input type="text" th:field="*{email}"/><br>
+    <label>Active: </label>
+    <input type="text" th:field="*{active}" placeholder="1"/><br>
+    <button type="submit">Register</button>
+</form>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Staff</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>New Staff Confirmation</h2>
+<p><strong>ID:</strong> <span th:text="${staff.staffId}"></span></p>
+<p><strong>First Name:</strong> <span th:text="${staff.firstName}"></span></p>
+<a th:href="@{/}">Back to Home page</a><br>
+<a th:href="@{/staff/}">Back to table of Staff</a><br>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>
