@@ -39,9 +39,6 @@ public class StaffEntity {
     @Basic
     @Column(name = "password")
     private String password;
-    @Basic
-    @Column(name = "last_update")
-    private Timestamp lastUpdate;
 
     public Integer getStaffId() {
         return staffId;
@@ -123,25 +120,17 @@ public class StaffEntity {
         this.password = password;
     }
 
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StaffEntity that = (StaffEntity) o;
-        return Objects.equals(staffId, that.staffId) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(addressId, that.addressId) && Arrays.equals(picture, that.picture) && Objects.equals(email, that.email) && Objects.equals(storeId, that.storeId) && Objects.equals(active, that.active) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(lastUpdate, that.lastUpdate);
+        return Objects.equals(staffId, that.staffId) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(addressId, that.addressId) && Arrays.equals(picture, that.picture) && Objects.equals(email, that.email) && Objects.equals(storeId, that.storeId) && Objects.equals(active, that.active) && Objects.equals(username, that.username) && Objects.equals(password, that.password);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(staffId, firstName, lastName, addressId, email, storeId, active, username, password, lastUpdate);
+        int result = Objects.hash(staffId, firstName, lastName, addressId, email, storeId, active, username, password);
         result = 31 * result + Arrays.hashCode(picture);
         return result;
     }

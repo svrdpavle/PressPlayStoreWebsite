@@ -16,7 +16,6 @@
                 <p class="card-text h5">Description:</p>
                 <p class="card-text" th:text="${film.description}"></p>
                 <p class="card-text text-center">
-                    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary">
                         <a class="text-white" th:href="@{view-film/{id}(id=${film.fid})}">View more details</a>
                     </button>

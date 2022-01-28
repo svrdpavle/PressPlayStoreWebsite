@@ -70,7 +70,7 @@ public class WebsiteController {
         StaffEntity staffEntity = staffRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Customer ID" + id));
         staffRepository.delete(staffEntity);
-        return "staff";
+        return "deleted-staff";
     }
 
     @GetMapping("/access-denied")

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deleted Staff</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Staff has been deleted!</h2>
+<a th:href="@{/}">Back to Home page</a><br>
+<a th:href="@{/staff/}">Back to table of Staff</a><br>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>

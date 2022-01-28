@@ -6,7 +6,7 @@
 </head>
 <body>
 <div th:insert="fragments/header"></div>
-<h2>Edit Staff</h2>
+<h2>Add Staff</h2>
 <form th:action="@{/save-staff/}" th:object="${staff}" method="post">
     <H2>Staff ID</H2>
     <H2 th:text="*{staffId}"></H2>
@@ -14,10 +14,20 @@
     <input type="text" th:field="*{firstName}"/><br>
     <label>Last Name: </label>
     <input type="text" th:field="*{lastName}"/><br>
+    <label>address id: </label>
+    <input type="text" th:field="*{addressId}" placeholder="1"/><br>
+    <label>picture: </label>
+    <input type="text" th:field="*{picture}" placeholder="1"/><br>
     <label>Email Title: </label>
     <input type="text" th:field="*{email}"/><br>
+    <label>store id: </label>
+    <input type="text" th:field="*{storeId}" placeholder="1"/><br>
     <label>Active: </label>
     <input type="text" th:field="*{active}" placeholder="1"/><br>
+    <label>username: </label>
+    <input type="text" th:field="*{username}" placeholder="a"/><br>
+    <label>password: </label>
+    <input type="text" th:field="*{password}" placeholder="a"/><br>
     <button type="submit">Register</button>
 </form>
 <div th:insert="fragments/footer :: main"></div>
