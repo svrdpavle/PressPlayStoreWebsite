@@ -4,6 +4,7 @@ import com.example.press_play_store_website.entities.tables.StaffEntity;
 import com.example.press_play_store_website.entities.views.FilmListEntity;
 import com.example.press_play_store_website.repositories.FilmListRepository;
 import com.example.press_play_store_website.repositories.StaffRepository;
+import com.example.press_play_store_website.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class WebsiteController {
     private final FilmListRepository filmListRepository;
     private final StaffRepository staffRepository;
+
+    private final StaffService staffService = new StaffService();
     //private final FilmService filmService = new FilmService();
 
     @Autowired
@@ -68,9 +71,19 @@ public class WebsiteController {
     @GetMapping("/delete-staff/{id}")
     public String deleteStaff(@PathVariable("id") Integer id) {
         StaffEntity staffEntity = staffRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Customer ID" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Staff ID" + id));
         staffRepository.delete(staffEntity);
         return "deleted-staff";
+    }
+
+    @PostMapping("/update-staff/{id}")
+    public String updateCustomer(@ModelAttribute("staff") StaffEntity updatedStaff,
+                                 @PathVariable("id") Integer id) {
+        StaffEntity staffEntity = staffRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Staff ID: " + id));
+        staffService.update(updatedStaff, staffEntity);
+        staffRepository.save(staffEntity);
+        return "index";
     }
 
     @GetMapping("/access-denied")
