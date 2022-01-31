@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deleted Film</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Film has been deleted!</h2>
+<a th:href="@{/}">Back to Home</a><br>
+<a th:href="@{/view-films/}">Back to table of Films</a><br>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>

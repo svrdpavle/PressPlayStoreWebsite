@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Staff</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Add Film</h2>
+<form th:action="@{/save-film/}" th:object="${film}" method="post">
+    <H2>Film ID</H2>
+    <H2 th:text="*{filmId}"></H2>
+    <label>Title: </label>
+    <input type="text" th:field="*{title}"/><br>
+    <label>Description: </label>
+    <input type="text" th:field="*{description}"/><br>
+    <label>Release Year: </label>
+    <input type="text" th:field="*{releaseYear}" placeholder="1"/><br>
+    <label>Language ID: </label>
+    <input type="text" th:field="*{languageId}" placeholder="1"/><br>
+    <label>Original Language ID: </label>
+    <input type="text" th:field="*{originalLanguageId}"/><br>
+    <label>Rental Duration: </label>
+    <input type="text" th:field="*{rentalDuration}" placeholder="1"/><br>
+    <label>Rental Rate: </label>
+    <input type="text" th:field="*{rentalRate}" placeholder="1"/><br>
+    <label>Length: </label>
+    <input type="text" th:field="*{length}" placeholder="a"/><br>
+    <label>Replacement Cost: </label>
+    <input type="text" th:field="*{replacementCost}" placeholder="a"/><br>
+    <label>Rating: </label>
+    <input type="text" th:field="*{rating}" placeholder="a"/><br>
+    <label>Special Features: </label>
+    <input type="text" th:field="*{specialFeatures}" placeholder="a"/><br>
+    <button type="submit">Add film to database</button>
+</form>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>

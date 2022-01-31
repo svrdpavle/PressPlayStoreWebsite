@@ -1,9 +1,12 @@
 package com.example.press_play_store_website.controllers;
 
+import com.example.press_play_store_website.entities.tables.FilmEntity;
 import com.example.press_play_store_website.entities.tables.StaffEntity;
 import com.example.press_play_store_website.entities.views.FilmListEntity;
 import com.example.press_play_store_website.repositories.FilmListRepository;
+import com.example.press_play_store_website.repositories.FilmRepository;
 import com.example.press_play_store_website.repositories.StaffRepository;
+import com.example.press_play_store_website.services.FilmService;
 import com.example.press_play_store_website.services.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,22 +18,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class WebsiteController {
+    private final FilmRepository filmRepository;
     private final FilmListRepository filmListRepository;
     private final StaffRepository staffRepository;
 
     private final StaffService staffService = new StaffService();
-    //private final FilmService filmService = new FilmService();
+    private final FilmService filmService = new FilmService();
 
     @Autowired
-    public WebsiteController(FilmListRepository filmListRepository, StaffRepository staffRepository) {
+    public WebsiteController(FilmRepository filmRepository, FilmListRepository filmListRepository, StaffRepository staffRepository) {
+        this.filmRepository = filmRepository;
         this.filmListRepository = filmListRepository;
         this.staffRepository = staffRepository;
     }
 
-    @GetMapping("/film")
-    public String getAllFilms(Model model) {
+    // film - views
+    @GetMapping("/film-catalogue")
+    public String getCatalogueOfFilms(Model model) {
         model.addAttribute("film", filmListRepository.findAll());
-        return "film";
+        return "film-catalogue";
     }
 
     @GetMapping("/view-film/{id}")
@@ -39,6 +45,53 @@ public class WebsiteController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Film ID: " + id));
         model.addAttribute("film", filmListEntity);
         return "view-film";
+    }
+
+    // film - tables
+
+    @GetMapping("/view-films")
+    public String viewAllFilms(Model model) {
+        model.addAttribute("film", filmRepository.findAll());
+        return "view-films";
+    }
+
+    @GetMapping("/add-film")
+    public String addFilm(Model model) {
+        FilmEntity filmEntity = new FilmEntity();
+        model.addAttribute("film", filmEntity);
+        return "add-film";
+    }
+
+    @PostMapping("/save-film")
+    public String saveFilm(@ModelAttribute("film") FilmEntity filmEntity) {
+        filmRepository.save(filmEntity);
+        return "saved-film";
+    }
+
+    @GetMapping("/edit-film/{id}")
+    public String editFilm(@PathVariable("id") Integer id, Model model) {
+        FilmEntity filmEntity = filmRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Film ID: " + id));
+        model.addAttribute("film", filmEntity);
+        return "edit-film";
+    }
+
+    @GetMapping("/delete-film/{id}")
+    public String deleteFilm(@PathVariable("id") Integer id) {
+        FilmEntity filmEntity = filmRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Film ID" + id));
+        filmRepository.delete(filmEntity);
+        return "deleted-film";
+    }
+
+    @PostMapping("/update-film/{id}")
+    public String updateFilm(@ModelAttribute("film") FilmEntity updatedFilm,
+                                 @PathVariable("id") Integer id) {
+        FilmEntity filmEntity = filmRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Film ID: " + id));
+        filmService.update(updatedFilm, filmEntity);
+        filmRepository.save(filmEntity);
+        return "admin";
     }
 
     @GetMapping("/admin")
@@ -88,7 +141,7 @@ public class WebsiteController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Staff ID: " + id));
         staffService.update(updatedStaff, staffEntity);
         staffRepository.save(staffEntity);
-        return "index";
+        return "admin";
     }
 
     @GetMapping("/access-denied")

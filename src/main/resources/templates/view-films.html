@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table of films</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>Table of films</h2>
+<div>
+    <a th:href="@{/add-film/}">Add Film</a>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Release Year</th>
+        <th>Language ID</th>
+        <th>Original Language ID</th>
+        <th>Rental Duration</th>
+        <th>Rental Rate</th>
+        <th>Length</th>
+        <th>Replacement Cost</th>
+        <th>Rating</th>
+        <th>Special Features</th>
+    </tr>
+    </thead>
+    <tr th:each="film : ${film}">
+        <td th:text="${film.title}"></td>
+        <td th:text="${film.description}"></td>
+        <td th:text="${film.releaseYear}"></td>
+        <td th:text="${film.languageId}"></td>
+        <td th:text="${film.originalLanguageId}"></td>
+        <td th:text="${film.rentalDuration}"></td>
+        <td th:text="${film.rentalRate}"></td>
+        <td th:text="${film.length}"></td>
+        <td th:text="${film.replacementCost}"></td>
+        <td th:text="${film.rating}"></td>
+        <td th:text="${film.specialFeatures}"></td>
+        <td><a th:href="@{/edit-film/{id}(id=${film.filmId})}">Edit</a></td>
+        <td><a th:href="@{/delete-film/{id}(id=${film.filmId})}">Delete</a></td>
+    </tr>
+</table>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>

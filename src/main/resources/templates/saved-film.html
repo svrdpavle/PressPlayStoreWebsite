@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved Film</title>
+</head>
+<body>
+<div th:insert="fragments/header"></div>
+<h2>New Film Confirmation</h2>
+<p><strong>ID:</strong> <span th:text="${film.filmId}"></span></p>
+<p><strong>Title:</strong> <span th:text="${film.title}"></span></p>
+<a th:href="@{/}">Back to Home page</a><br>
+<a th:href="@{/view-films/}">Back to table of Films</a><br>
+<div th:insert="fragments/footer :: main"></div>
+</body>
+</html>
