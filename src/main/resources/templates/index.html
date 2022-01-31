@@ -3,11 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:insert="fragments/header"></div>
+<h2 class="text-center text-white">Welcome to Press Play</h2>
+<h5 class="text-center">Below you may select a category to be taken to a catalogue of our films!</h5>
+<div class="row align-items-center">
+    <div class="col"></div>
+    <div class="col">
+        <form th:action="@{/search-results}" method="post">
+            <select name="categoryName" class="form-select">
+                <option selected>Select a Category</option>
+                <option value="Action">Action</option>
+                <option value="Animation">Animation</option>
+                <option value="Children">Children</option>
+                <option value="Classics">Classics</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Drama">Drama</option>
+                <option value="Family">Family</option>
+                <option value="Foreign">Foreign</option>
+                <option value="Games">Games</option>
+                <option value="Horror">Horror</option>
+                <option value="Music">Music</option>
+                <option value="New">New</option>
+                <option value="Sci-fi">Sci-fi</option>
+                <option value="Sports">Sports</option>
+                <option value="Travel">Travel</option>
+            </select>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+    <div class="col"></div>
+</div>
 <div th:insert="fragments/footer :: main"></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

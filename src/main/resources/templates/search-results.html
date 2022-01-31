@@ -2,24 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Film</title>
+    <title>Search Results</title>
 </head>
 <body>
 <div th:insert="fragments/header"></div>
-<div class="row row-cols-1 g-4">
-    <div class="col">
-        <div class="card" th:object="${film}">
+<h2>Search Results by Category</h2>
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    <div class="col" th:each="film : ${searchResults}">
+        <div class="card">
             <div class="card-header text-center bg-light h4" th:text="${film.title}"></div>
             <div class="card-header text-center text-white bg-danger h4" th:text="${film.category}"></div>
             <div class="card-body">
                 <p class="card-text h5">Description:</p>
                 <p class="card-text" th:text="${film.description}"></p>
-                <p class="card-text h5">Actors:</p>
-                <p class="card-text" th:text="${film.actors}"></p>
-                <p class="card-text h5">Film Length:</p>
-                <p class="card-text" th:text="${film.length}"></p>
-                <p class="card-text h5">Age Rating:</p>
-                <p class="card-text" th:text="${film.rating}"></p>
+                <p class="card-text text-center">
+                    <button type="button" class="btn btn-primary">
+                        <a class="text-white" th:href="@{view-film/{id}(id=${film.fid})}">View more details</a>
+                    </button>
+                </p>
             </div>
             <div class="card-footer text-end text-white bg-success">Rental Price:
                 <h4 th:text="${film.price}"></h4>

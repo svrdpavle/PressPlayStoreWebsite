@@ -3,6 +3,7 @@ package com.example.press_play_store_website.controllers;
 import com.example.press_play_store_website.entities.tables.FilmEntity;
 import com.example.press_play_store_website.entities.tables.StaffEntity;
 import com.example.press_play_store_website.entities.views.FilmListEntity;
+import com.example.press_play_store_website.repositories.CategoryRepository;
 import com.example.press_play_store_website.repositories.FilmListRepository;
 import com.example.press_play_store_website.repositories.FilmRepository;
 import com.example.press_play_store_website.repositories.StaffRepository;
@@ -16,19 +17,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class WebsiteController {
     private final FilmRepository filmRepository;
     private final FilmListRepository filmListRepository;
+    private final CategoryRepository categoryRepository;
     private final StaffRepository staffRepository;
 
     private final StaffService staffService = new StaffService();
     private final FilmService filmService = new FilmService();
 
     @Autowired
-    public WebsiteController(FilmRepository filmRepository, FilmListRepository filmListRepository, StaffRepository staffRepository) {
+    public WebsiteController(FilmRepository filmRepository, FilmListRepository filmListRepository, CategoryRepository categoryRepository, StaffRepository staffRepository) {
         this.filmRepository = filmRepository;
         this.filmListRepository = filmListRepository;
+        this.categoryRepository = categoryRepository;
         this.staffRepository = staffRepository;
     }
 
@@ -160,7 +166,21 @@ public class WebsiteController {
     }
 
     @GetMapping("/home")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("category", categoryRepository.findAll());
         return "index";
     }
+
+    @PostMapping("/search-results")
+    public String getSearchResults(@ModelAttribute("categoryName") String categoryName, Model model) {
+        List<FilmListEntity> foundCategoryFilms = new ArrayList<>();
+        for (FilmListEntity filmListEntity: filmListRepository.findAll()) {
+            if (filmListEntity.getCategory().equals(categoryName)) {
+                foundCategoryFilms.add(filmListEntity);
+            }
+        }
+        model.addAttribute("searchResults", foundCategoryFilms);
+        return "search-results";
+    }
+
 }
