@@ -29,8 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication()
                 .dataSource(datasource)
-                .usersByUsernameQuery("select user_name, user_password, user_enabled from user_entity where user_name=?")
-                .authoritiesByUsernameQuery("select user_name, user_role from user_entity where user_name=?")
+                .usersByUsernameQuery("select email, password, user_enabled from user_entity where email=?")
+                .authoritiesByUsernameQuery("select email, user_role from user_entity where email=?")
                 .passwordEncoder(encoder);
 
     }
@@ -43,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .and().formLogin().loginPage("/login").permitAll()
+                .usernameParameter("email")
                 .defaultSuccessUrl("/", true)
 
                 .and().exceptionHandling().accessDeniedPage("/access-denied")

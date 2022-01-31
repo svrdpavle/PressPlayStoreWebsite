@@ -20,8 +20,12 @@ public class PressPlayStoreWebsiteApplication {
 //    @Bean
 //    public CommandLineRunner demo(UserRepository userRepository) {
 //        return args -> {
-//            userRepository.save(new UserEntity("pavle", encoder.encode("pavle"), "ADMIN", 1));
-//            userRepository.save(new UserEntity("bob", encoder.encode("bob"), "USER", 1));
+//            userRepository.save(new UserEntity(1, "pavle", "svrdlin",
+//                    "pavemail", encoder.encode("pavle"), "store address",
+//                    "ADMIN", 1));
+//            userRepository.save(new UserEntity(2, "bob", "bobby",
+//                    "bobemail", encoder.encode("bob"), "store address",
+//                    "CUSTOMER", 1));
 //        };
 //    }
 }
