@@ -41,6 +41,11 @@ public class WebsiteController {
         return "view-film";
     }
 
+    @GetMapping("/admin")
+    public String getStaffAdminPage(Model model) {
+        return "admin";
+    }
+
     @GetMapping("/staff")
     public String getAllStaff(Model model) {
         model.addAttribute("staff", staffRepository.findAll());
