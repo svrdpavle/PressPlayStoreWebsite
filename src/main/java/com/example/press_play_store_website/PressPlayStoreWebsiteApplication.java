@@ -17,15 +17,15 @@ public class PressPlayStoreWebsiteApplication {
         SpringApplication.run(PressPlayStoreWebsiteApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner demo(UserRepository userRepository) {
-//        return args -> {
-//            userRepository.save(new UserEntity(1, "pavle", "svrdlin",
-//                    "pavemail", encoder.encode("pavle"), "store address",
-//                    "ADMIN", 1));
-//            userRepository.save(new UserEntity(2, "bob", "bobby",
-//                    "bobemail", encoder.encode("bob"), "store address",
-//                    "CUSTOMER", 1));
-//        };
-//    }
+    @Bean
+    public CommandLineRunner demo(UserRepository userRepository) {
+        return args -> {
+            userRepository.save(new UserEntity(1, "pavle", "svrdlin",
+                    "pavemail@email.com", encoder.encode("pavle"), "store address",
+                    "ADMIN", 1));
+            userRepository.save(new UserEntity(2, "bob", "bobby",
+                    "bobemail@email.com", encoder.encode("bob"), "store address",
+                    "CUSTOMER", 1));
+        };
+    }
 }

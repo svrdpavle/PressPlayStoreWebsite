@@ -171,6 +171,11 @@ public class WebsiteController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String getErrorPage() {
+        return "error";
+    }
+
     @PostMapping("/search-results")
     public String getSearchResults(@ModelAttribute("categoryName") String categoryName, Model model) {
         List<FilmListEntity> foundCategoryFilms = new ArrayList<>();

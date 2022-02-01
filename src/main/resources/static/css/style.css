@@ -2,6 +2,10 @@ body {
     background: sandybrown;
 }
 
+.no-underline {
+    text-decoration: none;
+}
+
 .bg-custom {
     background: blanchedalmond;
 }
